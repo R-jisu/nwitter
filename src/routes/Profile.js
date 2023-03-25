@@ -1,7 +1,17 @@
+import { authService } from "fbInstnace";
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 function Profile() {
-  return <div>Profile</div>;
+  const history = useHistory();
+  const onLogOutClick = () => {
+    authService.signOut();
+    history.push("/");
+  };
+  return (
+    <>
+      <button onClick={onLogOutClick}>Log Out</button>
+    </>
+  );
 }
 
 export default Profile;
