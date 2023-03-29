@@ -4,17 +4,23 @@ import { authService } from "fbInstnace";
 
 function App() {
   const [init, setInit] = useState(false);
-  const [isLooggedIn, setIsLoggedIn] = useState(false);
+  const [userObj, setUserObj] = useState(null);
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setIsLoggedIn(true);
-      } else setIsLoggedIn(false);
+        setUserObj(user);
+      }
       setInit(true);
     });
   }, []);
   return (
-    <>{init ? <AppRouter isLooggedIn={isLooggedIn} /> : "Initializing..."}</>
+    <>
+      {init ? (
+        <AppRouter isLooggedIn={Boolean(userObj)} userObj={userObj} />
+      ) : (
+        "Initializing..."
+      )}
+    </>
   );
 }
 

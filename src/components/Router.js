@@ -18,19 +18,18 @@ const AppRouter = (props) => {
         {props.isLooggedIn ? (
           <>
             <Route exact path="/">
-              <Home />
+              <Home userObj={props.userObj} />
             </Route>
             <Route exact path="/profile">
               <Profile />
             </Route>
-            <Redirect from="*" to="/" />
+            <Redirect to="/" />
           </>
         ) : (
           <>
             <Route exact path="/">
               <Auth />
             </Route>
-            <Redirect from="*" to="/" />
           </>
         )}
       </Switch>
