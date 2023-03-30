@@ -13,7 +13,7 @@ import Profile from "routes/Profile";
 const AppRouter = (props) => {
   return (
     <Router>
-      {props.isLooggedIn && <Navigation />}
+      {props.isLooggedIn && <Navigation userObj={props.userObj} />}
       <Switch>
         {props.isLooggedIn ? (
           <>
@@ -21,7 +21,10 @@ const AppRouter = (props) => {
               <Home userObj={props.userObj} />
             </Route>
             <Route exact path="/profile">
-              <Profile />
+              <Profile
+                refreshUser={props.refreshUser}
+                userObj={props.userObj}
+              />
             </Route>
             <Redirect path="*" to="/" />
           </>

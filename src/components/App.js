@@ -5,6 +5,7 @@ import { authService } from "fbInstnace";
 function App() {
   const [init, setInit] = useState(false);
   const [userObj, setUserObj] = useState(null);
+  const [newName, setNewName] = useState("");
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
@@ -15,10 +16,17 @@ function App() {
       setInit(true);
     });
   }, []);
+  const refreshUser = () => {
+    setNewName(userObj.displayName);
+  };
   return (
     <>
       {init ? (
-        <AppRouter isLooggedIn={Boolean(userObj)} userObj={userObj} />
+        <AppRouter
+          refreshUser={refreshUser}
+          isLooggedIn={Boolean(userObj)}
+          userObj={userObj}
+        />
       ) : (
         "Initializing..."
       )}
