@@ -23,13 +23,14 @@ const AppRouter = (props) => {
             <Route exact path="/profile">
               <Profile />
             </Route>
-            <Redirect to="/" />
+            <Redirect path="*" to="/" />
           </>
         ) : (
           <>
             <Route exact path="/">
               <Auth />
             </Route>
+            <Redirect path="*" to="/" />
           </>
         )}
       </Switch>
